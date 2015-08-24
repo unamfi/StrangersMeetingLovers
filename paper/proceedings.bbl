@@ -32,11 +32,37 @@
 \ifx \showarticletitle \undefined \def \showarticletitle #1{#1}   \fi
 \ifx \showURL      \undefined \def \showURL       #1{#1}          \fi
 
+\bibitem{ciampaglia2015moodbar}
+{Giovanni~Luca Ciampaglia} {and} {Dario Taraborelli}. 2015.
+\newblock \showarticletitle{MoodBar: Increasing new user retention in Wikipedia
+  through lightweight socialization}. In {\em Proceedings of the 18th ACM
+  Conference on Computer Supported Cooperative Work \& Social Computing}. ACM,
+  734--742.
+\newblock
+
+
 \bibitem{halfaker2013making}
 {Aaron Halfaker}, {Oliver Keyes}, {and} {Dario Taraborelli}. 2013.
 \newblock \showarticletitle{Making peripheral participation legitimate: reader
   engagement experiments in Wikipedia}. In {\em Proceedings of the 2013
   conference on Computer supported cooperative work}. ACM, 849--860.
+\newblock
+
+
+\bibitem{morgan2013tea}
+{Jonathan~T Morgan}, {Siko Bouterse}, {Heather Walls}, {and} {Sarah Stierch}.
+  2013.
+\newblock \showarticletitle{Tea and sympathy: crafting positive new user
+  experiences on wikipedia}. In {\em Proceedings of the 2013 conference on
+  Computer supported cooperative work}. ACM, 839--848.
+\newblock
+
+
+\bibitem{ribeiro2014modeling}
+{Bruno Ribeiro}. 2014.
+\newblock \showarticletitle{Modeling and predicting the growth and death of
+  membership-based websites}. In {\em Proceedings of the 23rd international
+  conference on World Wide Web}. ACM, 653--664.
 \newblock
 
 

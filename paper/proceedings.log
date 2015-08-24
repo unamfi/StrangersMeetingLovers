@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.8.24)  24 AUG 2015 13:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2015/dev/Debian) (preloaded format=pdflatex 2015.8.24)  24 AUG 2015 15:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -959,7 +959,7 @@ e
 Underfull \vbox (badness 5726) has occurred while \output is active []
 
 
-<figures/sigchi-logo.png, id=22, 241.8636pt x 55.407pt>
+<figures/sigchi-logo.png, id=27, 241.8636pt x 55.407pt>
 File: figures/sigchi-logo.png Graphic file (type png)
 
 <use figures/sigchi-logo.png>
@@ -968,14 +968,6 @@ Package pdftex.def Info: figures/sigchi-logo.png used on input line 131.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 133.
  (./proceedings.bbl
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 49.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <8> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 49.
-
 
 Package balance Warning: You have called \balance in second column
 (balance)                Columns might not be balanced.
@@ -985,11 +977,16 @@ Package balance Warning: You have called \balance in second column
 
 Non-PDF special ignored!
 
- <./figures/sigchi-logo.png>])
-Overfull \vbox (1.95996pt too high) has occurred while \output is active []
+ <./figures/sigchi-logo.png>]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 75.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.}) has b
-een already used, duplicate ignored
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <8> not available
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 75.
+)pdfTeX warning (ext4): destination with the same identifier (name{page.}) has 
+been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.165 \end{document}
@@ -1004,13 +1001,13 @@ Package rerunfilecheck Info: File `proceedings.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 165.
  ) 
 Here is how much of TeX's memory you used:
- 17496 strings out of 494977
- 321269 string characters out of 6180183
- 375597 words of memory out of 5000000
- 20342 multiletter control sequences out of 15000+600000
+ 17502 strings out of 494977
+ 321396 string characters out of 6180183
+ 375716 words of memory out of 5000000
+ 20345 multiletter control sequences out of 15000+600000
  38411 words of font info for 96 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 62i,9n,56p,842b,440s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,9n,56p,842b,438s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{section*.3} has been referenced but does not exis
 t, replaced by a fixed one
 
@@ -1023,10 +1020,10 @@ onts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/ur
 w/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on proceedings.pdf (2 pages, 91557 bytes).
+Output written on proceedings.pdf (2 pages, 93689 bytes).
 PDF statistics:
- 73 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
- 11 named destinations out of 1000 (max. 500000)
+ 82 PDF objects out of 1000 (max. 8388607)
+ 69 compressed objects within 1 object stream
+ 14 named destinations out of 1000 (max. 500000)
  42 words of extra memory for PDF output out of 10000 (max. 10000000)
 
