@@ -16,38 +16,38 @@ Warning--empty publisher in halfaker2013making
 Warning--empty address in halfaker2013making
 Warning--empty publisher in morgan2013tea
 Warning--empty address in morgan2013tea
-Warning--empty publisher in ribeiro2014modeling
-Warning--empty address in ribeiro2014modeling
+Warning--empty publisher in saiphBotivist
+Warning--empty address in saiphBotivist
 Warning--empty publisher in suh2009singularity
 Warning--empty address in suh2009singularity
 You've used 6 entries,
             5283 wiz_defined-function locations,
-            1251 strings with 15347 characters,
-and the built_in function-call counts, 5297 in all, are:
-= -- 532
-> -- 164
+            1251 strings with 15385 characters,
+and the built_in function-call counts, 5391 in all, are:
+= -- 540
+> -- 179
 < -- 0
-+ -- 52
-- -- 57
-* -- 326
-:= -- 579
++ -- 58
+- -- 60
+* -- 347
+:= -- 591
 add.period$ -- 31
 call.type$ -- 6
-change.case$ -- 39
+change.case$ -- 41
 chr.to.int$ -- 6
 cite$ -- 16
 duplicate$ -- 537
 empty$ -- 372
-format.name$ -- 69
-if$ -- 1237
+format.name$ -- 75
+if$ -- 1257
 int.to.chr$ -- 1
 int.to.str$ -- 0
 missing$ -- 25
 newline$ -- 73
 num.names$ -- 36
-pop$ -- 245
+pop$ -- 247
 preamble$ -- 1
-purify$ -- 63
+purify$ -- 65
 quote$ -- 0
 skip$ -- 130
 stack$ -- 0
@@ -58,7 +58,7 @@ text.prefix$ -- 0
 top$ -- 0
 type$ -- 54
 warning$ -- 10
-while$ -- 40
+while$ -- 37
 width$ -- 0
 write$ -- 114
 (There was 1 error message)
