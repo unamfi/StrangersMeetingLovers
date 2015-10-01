@@ -3,9 +3,13 @@ from secrets import *
 import time
 from time import gmtime, strftime
 import datetime
+import pickle
+import time 
 
-currentTeams={}
+currentTeams2={}
 teamsRecruited={}
+teamsRecruitedFinal={}
+peopleRecruited={}
 
 def authenticateBot():
 	auth = tweepy.OAuthHandler(C_KEY, C_SECRET)  
@@ -15,7 +19,7 @@ def authenticateBot():
 
 def setMessage(api,message):
 	api.update_status(status=message)
-	print "Tweeting!"
+	#print "Tweeting!"
 
 
 def prepareDataIncomingMessage(status):
@@ -36,51 +40,109 @@ def prepareDataIncomingMessage(status):
     idTweet=status.id_str
     return date,status,screen_name,message,idTweet
 
+def prepareNameString(currentTeams):
+    #print "enter prepareNameString"
+    names=""
+    for n in currentTeams:
+        print n
+        names+="@"+str(n)
+        names+=" "
+    #print "returning Names:"+str(names)
+    return names
+
+def prepareRecruitMessage(names,recruitMessage):
+    tweet=names+recruitMessage
+   # print "LEN TWEET:"+str(len(tweet))
+    if len(tweet)<140:
+        return tweet,True
+    else:
+        return tweet,False
 
 
 class StdOutListener(tweepy.StreamListener):
 
-	global currentTeams
-	global teamsRecruited
+    global currentTeams2
+    global teamsRecruited
+    global api
 
-    ''' Handles data received from the stream. '''
+    #''' Handles data received from the stream. '''
  
     def on_status(self, status):
-        # Prints the text of the tweet
-        print('Tweet text: ' + status.text)
+        global currentTeams2
+        global teamsRecruited
+        global api
+        
+        #print('Tweet text: ' + status.text)
         date,status,screen_name,message,idTweet=prepareDataIncomingMessage(status)
-        print "User:"+str(screen_name)
-        if len(currentTeams)<3:
-        	currentTeams.setdefault(screen_name,0)
-        	currentTeams[screen_name]+=1
+       # print "User:"+str(screen_name)
+        if len(currentTeams2)<2:
+            if not screen_name in peopleRecruited:
+                #print "Les than 3"
+                currentTeams2.setdefault(screen_name,0)
+                currentTeams2[screen_name]+=1
+                #print "Current Teams:"+str(currentTeams2)
 
         else:
-        	print "Got everybody, ready to recruit!"
+            #print "Listo Reclutar!!"
+            names=prepareNameString(currentTeams2)
+            #print "back from names!"
+            recruitMessage="Busco cambiar Wikipedia cubriendo mas mujeres! Que Gran Mujer deberia tener Wiki que no tenga ahorita?"
+            tweet,canPostIt=prepareRecruitMessage(names,recruitMessage)
+            #print "Will almost post this!:"+str(tweet)
+            #print "I can post? "+str(canPostIt)
+            if canPostIt:
+            
+                namesClean=names
+                namesClean.replace("@","")
+                namesClean=sorted(namesClean.split(), key=str.lower)
+                keyNames=str(namesClean)
+                if not keyNames in teamsRecruitedFinal:
+                    teamsRecruitedFinal[keyNames]=tweet
+                    #print "Ready to send Tweet!"
+                    #print "People:"+names
+                    #print "Tweets:"+tweet
+                    setMessage(api,tweet)
+                    pickle.dump(teamsRecruitedFinal, open("teamsRecruitedFinal.p", "wb"))
+                    #pickle.dump(teamsRecruitedFinal,"teamsRecruited.p")
+                    #print "SEND OUT TWEET"
+                    for n in currentTeams2:
+                        peopleRecruited.setdefault(n,0)
+                    pickle.dump(peopleRecruited, open("peopleRecruited.p", "wb"))
+                    
+                    currentTeams2={}
+                    time.sleep(60) 
+            else:
+                pass
 
+           
  
-        # There are many options in the status object,
-        # hashtags can be very easily accessed.
         
-        #for hashtag in status.entries['hashtags']:
-         #   print(hashtag['text'])
  
         return True
  
     def on_error(self, status_code):
-        print('Got an error with status code: ' + str(status_code))
+        #print('Got an error with status code: ' + str(status_code))
         return True # To continue listening
  
     def on_timeout(self):
-        print('Timeout...')
+        #print('Timeout...')
         return True # To continue listening
 
 #api=authenticateBot()
 #message="Together we can improve the knowledge of the world!"
 #setMessage(api,message)
-print "time"
+#print "time"
+#a="@mary @nathan @gann"
+#a.replace("@","")
+#print sorted(a.split(), key=str.lower)
+#pickle.dump(a,"a.p")
+#pickle.dump(a, open("a.p", "wb"))
+
+
 l = StdOutListener()
 api,auth=authenticateBot()
 stream = tweepy.Stream(auth, l)
 
-publicKeyWords = ['UNAM']
+publicKeyWords = ['feminismo']
 stream.filter(track=publicKeyWords)
+
