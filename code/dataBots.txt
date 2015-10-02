@@ -1,0 +1,7 @@
+Cuenta:@MujeresFemBot
+clave:claudia
+
+ Consumer Key (API Key) W59q4ovN1fxwRa5eRy0B4AR76
+Consumer Secret (API Secret) kPpEGEzB8I2BfWhmYh8cdXkeQJBJXtVsCpv9ThDF4yyrtlTxdZ 
+ Access Token 3754637839-u1jo7AcfANN8kpFfJPLowCLdGSXbxhc2xscOmHC
+Access Token Secret dCRK1nOrUqT2dGOOAdcspT9kwFOADRCGIEiFbqhp2ylSF 
