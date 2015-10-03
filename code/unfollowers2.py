@@ -16,7 +16,10 @@ def authenticateBot():
 	return api,auth
 
 
-
+def getPeopleToFollow(api):
+	for follower in tweepy.Cursor(api.followers).items():
+		follower.follow()
+		print follower.screen_name
 
 def unFollowSuckers(SCREEN_NAME):
 	print SCREEN_NAME
@@ -39,8 +42,9 @@ def unFollowSuckers(SCREEN_NAME):
 
 #l = StdOutListener()
 SCREEN_NAME="MujeresFemBot"
-#api,auth=authenticateBot()
-unFollowSuckers(SCREEN_NAME)
+api,auth=authenticateBot()
+getPeopleToFollow(api)
+#unFollowSuckers(SCREEN_NAME)
 #stream = tweepy.Stream(auth, l)
 
 #publicKeyWords = ['feminismo']
