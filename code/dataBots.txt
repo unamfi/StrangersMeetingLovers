@@ -1,7 +1,14 @@
 Cuenta:@MujeresFemBot
 clave:claudia
 
+
  Consumer Key (API Key) W59q4ovN1fxwRa5eRy0B4AR76
 Consumer Secret (API Secret) kPpEGEzB8I2BfWhmYh8cdXkeQJBJXtVsCpv9ThDF4yyrtlTxdZ 
  Access Token 3754637839-u1jo7AcfANN8kpFfJPLowCLdGSXbxhc2xscOmHC
 Access Token Secret dCRK1nOrUqT2dGOOAdcspT9kwFOADRCGIEiFbqhp2ylSF 
+
+cuenta: BotActivista Wikipedia
+C_KEY = "9mLDe9FY3mNytAlzWvX2rD5QJ"  
+C_SECRET = "KEnj0OD7ViSbZaX44Ko4l4OnujdXDU8VQtXeD50P2BRbmZLKUa"  
+A_TOKEN = "3404406503-K0eybKrkgXGMdciWJ7HCkyqb0tmB4jh0D1BzDYx"  
+A_TOKEN_SECRET = "EIzMHN9V8f7N0TvqasXMwHLHBDMCM3QbUsusD5PLd4kOy"  
