@@ -106,6 +106,7 @@ def getMentionsStored(screen_name):
 			print p
 def getNames(text):
 	names={}
+
 	words=text.split()
 	for w in words:
 		if "@" in w:
@@ -113,11 +114,16 @@ def getNames(text):
 			names[w]+=1
 	return names
 def getRepliesBot(screen_name):
+	peopleWhoReplied={}
 	alltweets=pickle.load(open("alltweets_"+str(screen_name)+".p", "rb"))
 	for t in alltweets:
-		print t.text
-		print t.entities
-		break
+		#print t.text
+		if len(t.entities["user_mentions"])>0:
+			print len(t.entities["user_mentions"])
+			user=t.entities["user_mentions"][0]["screen_name"]
+			peopleWhoReplied.setdefault(user,0)
+			peopleWhoReplied[user]+=1
+		#break
 	#pickle.dump(alltweets, open("alltweets_"+str(screen_name)+".p", "wb"))
 
 #screen_name="MujeresFemBot"
