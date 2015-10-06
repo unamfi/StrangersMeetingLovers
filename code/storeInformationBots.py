@@ -12,6 +12,47 @@ def authenticateBot():
 	return api,auth
 
 
+def gettweetIDs(screen_name,api,idsToFind):
+   
+    alltweets = []
+    new_tweets = api.user_timeline(screen_name = screen_name,count=200)
+    alltweets.extend(new_tweets)
+    oldest = alltweets[-1].id - 1
+    tweetsFound={}
+     
+    #keep grabbing tweets until there are no tweets left to grab
+    while len(new_tweets) > 0:
+        print "getting tweets before %s" % (oldest)
+        new_tweets = api.user_timeline(screen_name = screen_name,count=200,max_id=oldest)
+        for t in new_tweets:
+        	print "Tweeter:"+str(t.id)
+        	return "meow"
+        	tStringID=str(t.id)
+        	if tStringID in idsToFind:
+        		print "FOUDN IT"
+        		tweetsFound[tStringID]=t.text
+
+
+
+        	#for t2 in idsToFind:
+        	#	print ""
+        	#if idToFind==t.id:
+        	#	print "FOUDN IT"
+        	#	print t.text
+        	#	return t.text
+
+        return tweetsFound
+        alltweets.extend(new_tweets)
+         
+        oldest = alltweets[-1].id - 1
+         
+ 
+ 
+        print "...%s tweets downloaded so far" % (len(alltweets))
+     
+    
+    return  "Nothing!:("
+
 def get_all_tweets(screen_name,api):
     #directorio="timelinePoliticos/"
     #Twitter only allows access to a users most recent 3240 tweets with this method
@@ -113,18 +154,74 @@ def getNames(text):
 			names.setdefault(w,0)
 			names[w]+=1
 	return names
+
+
+def getTweetsWithText(tweets):
+	cleanTweets={}
+	for t in tweets:
+		if not t==None:
+			if not t=="":
+				
+				cleanTweets[str(t)]=0
+	return cleanTweets
+
+
+		#			gettweetID(p,api,t)
+		#			break
+	#pass
+	#for page in tweepy.Cursor(api.user_timeline, id="253346744").pages(1):
+    #for item in page:
+     #       if item.in_reply_to_user_id_str == "151791801":
+      #          print item.text
+       #         a = api.get_status(item.in_reply_to_status_id_str)
+        #        print a.text
+
+def getTextPeoppleWhoReply(screen_name):
+	api,auth=authenticateBot()
+	peopleWhoReplied=pickle.load(open("peopleWhoRepliedTweets_"+str(screen_name)+".p", "rb"))
+	print len(peopleWhoReplied)
+	for p in peopleWhoReplied:
+		#print p
+		tweets=peopleWhoReplied[p]
+		cleanTweets=getTweetsWithText(tweets)
+		#gettweetIDs(p,api,tweets)
+		value=gettweetIDs(p,api,cleanTweets)
+		print "Found this many:"+str(len(value))
+		print value
+
+		#print value
+		#for t in cleanTweets:
+		#	print t
+		#	break
+		break
+		#gettweetID(p,api,tweets)
+		#for t in tweets:
+		#	if not t==None:
+		#		if not t=="":
+		#			print p+","+str(t)
+		#			gettweetID(p,api,t)
+		#			break
+		#break
+					#gettweetID(p,api,t)
+
 def getRepliesBot(screen_name):
 	peopleWhoReplied={}
 	alltweets=pickle.load(open("alltweets_"+str(screen_name)+".p", "rb"))
 	for t in alltweets:
 		#print t.text
-		if len(t.entities["user_mentions"])>0:
-			print len(t.entities["user_mentions"])
-			user=t.entities["user_mentions"][0]["screen_name"]
-			peopleWhoReplied.setdefault(user,0)
-			peopleWhoReplied[user]+=1
+		#print t
+		replyTweetID=t.in_reply_to_status_id_str
 		#break
-	#pickle.dump(alltweets, open("alltweets_"+str(screen_name)+".p", "wb"))
+		if len(t.entities["user_mentions"])>0:
+			#print len(t.entities["user_mentions"])
+			#print t.entities["user_mentions"][0]
+			user=t.entities["user_mentions"][0]["screen_name"]
+			peopleWhoReplied.setdefault(user,[])
+			peopleWhoReplied[user].append(replyTweetID)
+			#print user
+
+	
+	pickle.dump(peopleWhoReplied, open("peopleWhoRepliedTweets_"+str(screen_name)+".p", "wb"))
 
 #screen_name="MujeresFemBot"
 #getMentionsStored(screen_name)
@@ -132,6 +229,7 @@ def getRepliesBot(screen_name):
 #api,auth=authenticateBot()
 screen_name="Mujeres__Fem"
 getRepliesBot(screen_name)
+getTextPeoppleWhoReply(screen_name)
 
 #getMentionsStored(screen_name)
 #get_all_tweets(screen_name,api)
