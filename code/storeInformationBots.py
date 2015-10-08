@@ -5,7 +5,37 @@ from time import gmtime, strftime
 import datetime
 import pickle
 
-def authenticateBot():
+#screen_name="Mujeres__Fem"
+#screen_name="MujeresFemBot"
+botKeyInfo={}
+botKeyInfo["Mujeres__Fem"]={}
+botKeyInfo["Mujeres__Fem"]["C_KEY"]="VQmFOYXWmEbhbzOE8cpeTg8Rr"
+botKeyInfo["Mujeres__Fem"]["C_SECRET"]="VQmFOYXWmEbhbzOE8cpeTg8Rr"
+botKeyInfo["Mujeres__Fem"]["A_TOKEN"]="VQmFOYXWmEbhbzOE8cpeTg8Rr"
+botKeyInfo["Mujeres__Fem"]["A_TOKEN_SECRET"]="VQmFOYXWmEbhbzOE8cpeTg8Rr"
+
+
+#C_KEY = "T48gHlgfSgEFuOS76N2gy7bj9"  
+#C_SECRET = "7ntJ1xPdSxTjR2bvKVMO0flCvn0xM9AHrhg0DzY77iGnbB6Rzw"  
+#A_TOKEN = "3754637839-BcqriLQ0xS9EJzqzkz5KKZg94lsGmY8kqS2S6Rb"  
+#A_TOKEN_SECRET = "sI9YoXx6zqOdlOFgyhPTVKZ7hgqAPGwNza1FKAdyJL1pt" 
+
+botKeyInfo["MujeresFemBot"]={}
+botKeyInfo["MujeresFemBot"]["C_KEY"]="T48gHlgfSgEFuOS76N2gy7bj9"
+botKeyInfo["MujeresFemBot"]["C_SECRET"]="7ntJ1xPdSxTjR2bvKVMO0flCvn0xM9AHrhg0DzY77iGnbB6Rzw"
+botKeyInfo["MujeresFemBot"]["A_TOKEN"]="3754637839-BcqriLQ0xS9EJzqzkz5KKZg94lsGmY8kqS2S6Rb"
+botKeyInfo["MujeresFemBot"]["A_TOKEN_SECRET"]="sI9YoXx6zqOdlOFgyhPTVKZ7hgqAPGwNza1FKAdyJL1pt"
+
+
+
+
+def authenticateBot(screen_name):
+
+	C_KEY=botKeyInfo[screen_name]["C_KEY"]
+	C_SECRET=botKeyInfo[screen_name]["C_SECRET"]
+	A_TOKEN=botKeyInfo[screen_name]["A_TOKEN"]
+	A_TOKEN_SECRET=botKeyInfo[screen_name]["A_TOKEN_SECRET"]
+
 	auth = tweepy.OAuthHandler(C_KEY, C_SECRET)  
 	auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)  
 	api = tweepy.API(auth)
@@ -194,7 +224,7 @@ def get_all_tweets(screen_name,api):
 
 def  getPeopleWhoMentioned(screen_name):
 	
-	api,auth=authenticateBot()
+	api,auth=authenticateBot(screen_name)
 	peopleWhoReplied={}
 	peopleWhoRepliedText={}
 	peopleWhoRepliedIDs={}
@@ -222,6 +252,28 @@ def  getPeopleWhoMentioned(screen_name):
 	#pickle.dump(peopleWhoRepliedText, open("peopleWhoRepliedText_"+str(screen_name)+"_"+str(date)+".p", "wb"))
 
 
+def getStatsPeopleWhoReply(screen_name):
+	users=pickle.load(open("peoplewhoReplyANdMentionBot_"+str(screen_name)+".p", "rb"))
+	
+	numMessages=[]
+	for u in users:
+		messages=users[u]
+		#print len(messages)
+		numMessages.append(len(messages))
+
+	numMessages.sort()
+	todo=len(numMessages)
+	todo=todo/2
+	print "Data for:"+str(screen_name)
+	print "Number users who reply:"+str(len(users))
+	print "Median Number of replies:"+str(numMessages[todo])
+	print "Max Number of replies:"+str(numMessages[len(numMessages)-1])
+	print
+	#for n in numMessages:
+	#	print n
+
+	#for u in users:
+	#	print u+","+str(len(users))
 
 
 def getAllRepliesAndMentioned(screen_name):
@@ -244,6 +296,7 @@ def getAllRepliesAndMentioned(screen_name):
 			users[u].setdefault(t,0)
 			users[u][t]+=1
 	print len(users)
+	pickle.dump(users, open("peoplewhoReplyANdMentionBot_"+str(screen_name)+".p", "wb"))
 
 
 def getMentionsStored(screen_name):
@@ -286,10 +339,15 @@ def getTweetsWithText(tweets):
 
 
 def getStartTimelines(screen_name):
-	api,auth=authenticateBot()
+	api,auth=authenticateBot(screen_name)
 	peopleWhoReplied=pickle.load(open("peopleWhoRepliedTweets_"+str(screen_name)+".p", "rb"))
-	peopleStored=pickle.load(open("peopleStored_"+str(screen_name)+".p", "rb"))
-	peopleWithTweetText=pickle.load(open("peopleWithTweetText_"+screen_name+".p", "rb"))
+	peopleStored={}
+	#pickle.load(open("peopleStored_"+str(screen_name)+".p", "rb"))
+	#peopleWithTweetText=pickle.load(open("peopleWithTweetText_"+screen_name+".p", "rb"))
+	#peopleWithTweetText=pickle.load(open("peopleWhoReplyTextFinal_"+screen_name+".p", "rb"))
+
+
+	
 	for p in peopleWhoReplied:
 		if not p in peopleStored:
 			print p
@@ -315,7 +373,7 @@ def getStartTimelines(screen_name):
 
 def getTextPeoppleWhoReply(screen_name):
 	peopleStored={}
-	api,auth=authenticateBot()
+	api,auth=authenticateBot(screen_name)
 	peopleWhoReplied=pickle.load(open("peopleWhoRepliedTweets_"+str(screen_name)+".p", "rb"))
 	print len(peopleWhoReplied)
 	peopleWithTweetText={}
@@ -397,8 +455,24 @@ def getRepliesBot(screen_name):
 #getPeopleWhoReply(screen_name)
 #api,auth=authenticateBot()
 #get_all_tweets(screen_name,api)
+
+#screen_name="Mujeres__Fem"
+screen_name="MujeresFemBot"
+getStatsPeopleWhoReply(screen_name)
+
 screen_name="Mujeres__Fem"
-getAllRepliesAndMentioned(screen_name)
+getStatsPeopleWhoReply(screen_name)
+
+
+
+#getPeopleWhoMentioned(screen_name)
+
+#getRepliesBot(screen_name)
+#getStartTimelines(screen_name)
+#getTextPeoppleWhoReply(screen_name)
+#getAllRepliesAndMentioned(screen_name)
+
+
 #getRepliesBot(screen_name)
 #getTextPeoppleWhoReply(screen_name)
 #getStartTimelines(screen_name)

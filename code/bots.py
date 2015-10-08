@@ -11,11 +11,52 @@ teamsRecruited={}
 teamsRecruitedFinal={}
 peopleRecruited={}
 
+
+
+botTransScreenName={}
+botTransScreenName["bot"]="MujeresFemBot"
+botTransScreenName["cause"]="Mujeres__Fem"
+
+
+botKeyInfo={}
+botKeyInfo["Mujeres__Fem"]={}
+botKeyInfo["Mujeres__Fem"]["C_KEY"]="VQmFOYXWmEbhbzOE8cpeTg8Rr"
+botKeyInfo["Mujeres__Fem"]["C_SECRET"]="VQmFOYXWmEbhbzOE8cpeTg8Rr"
+botKeyInfo["Mujeres__Fem"]["A_TOKEN"]="VQmFOYXWmEbhbzOE8cpeTg8Rr"
+botKeyInfo["Mujeres__Fem"]["A_TOKEN_SECRET"]="VQmFOYXWmEbhbzOE8cpeTg8Rr"
+
+
+#C_KEY = "T48gHlgfSgEFuOS76N2gy7bj9"  
+#C_SECRET = "7ntJ1xPdSxTjR2bvKVMO0flCvn0xM9AHrhg0DzY77iGnbB6Rzw"  
+#A_TOKEN = "3754637839-BcqriLQ0xS9EJzqzkz5KKZg94lsGmY8kqS2S6Rb"  
+#A_TOKEN_SECRET = "sI9YoXx6zqOdlOFgyhPTVKZ7hgqAPGwNza1FKAdyJL1pt" 
+
+botKeyInfo["MujeresFemBot"]={}
+botKeyInfo["MujeresFemBot"]["C_KEY"]="T48gHlgfSgEFuOS76N2gy7bj9"
+botKeyInfo["MujeresFemBot"]["C_SECRET"]="7ntJ1xPdSxTjR2bvKVMO0flCvn0xM9AHrhg0DzY77iGnbB6Rzw"
+botKeyInfo["MujeresFemBot"]["A_TOKEN"]="3754637839-BcqriLQ0xS9EJzqzkz5KKZg94lsGmY8kqS2S6Rb"
+botKeyInfo["MujeresFemBot"]["A_TOKEN_SECRET"]="sI9YoXx6zqOdlOFgyhPTVKZ7hgqAPGwNza1FKAdyJL1pt"
+
+
+
+
+
+
+
+
+
 def authenticateBot():
-	auth = tweepy.OAuthHandler(C_KEY, C_SECRET)  
-	auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)  
-	api = tweepy.API(auth)
-	return api,auth
+    global currentBot
+    screen_name=botTransScreenName[currentBot]
+    C_KEY=botKeyInfo[screen_name]["C_KEY"]
+    C_SECRET=botKeyInfo[screen_name]["C_SECRET"]
+    A_TOKEN=botKeyInfo[screen_name]["A_TOKEN"]
+    A_TOKEN_SECRET=botKeyInfo[screen_name]["A_TOKEN_SECRET"]
+
+    auth = tweepy.OAuthHandler(C_KEY, C_SECRET)  
+    auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)  
+    api = tweepy.API(auth)
+    return api,auth
 
 def setMessage(api,message):
 	api.update_status(status=message)
